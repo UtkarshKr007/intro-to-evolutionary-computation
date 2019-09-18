@@ -6,6 +6,10 @@
   [[x y]]
   (and (zero? x) (zero? y)))
 
+(defn heuristic
+  [a b]
+  (+ (Math/abs (- (first a) (first b))) (Math/abs (- (second a) (second b))) ))
+
 ;; The possible moves in this lattice world. Each
 ;; move is represented by a vector indicating the
 ;; change in both x and y coordinates associated
