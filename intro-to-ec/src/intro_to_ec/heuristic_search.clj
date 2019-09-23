@@ -1,5 +1,6 @@
 (ns intro-to-ec.heuristic-search
-  (:require [clojure.set :as cset]))
+  (:require [clojure.set :as cset]
+    [shams.priority-queue :as pq]))
 
 (defn remove-previous-states
   [new-states frontier visited]
@@ -39,7 +40,9 @@
         :else
         (let [kids (remove-previous-states
                     (make-children current-node) frontier (keys came-from))]
+          (println kids)
           (recur
+          ;(pq/priority-queue #(heuristic % [0 0]) :elements frontier)
            (add-children
             kids
             (rest frontier))

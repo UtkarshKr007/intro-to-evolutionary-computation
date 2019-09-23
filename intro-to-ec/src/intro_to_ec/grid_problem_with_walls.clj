@@ -6,9 +6,11 @@
   [[x y]]
   (and (zero? x) (zero? y)))
 
+; Finds distance of a coordiante to goal(argument b) and multiplies by -1
+; because our priority queue sorts highest to lowest
 (defn heuristic
   [a b]
-  (+ (Math/abs (- (first a) (first b))) (Math/abs (- (second a) (second b))) ))
+  (* -1(+ (Math/abs (- (first a) (first b))) (Math/abs (- (second a) (second b))) )))
 
 ;; The possible moves in this lattice world. Each
 ;; move is represented by a vector indicating the
