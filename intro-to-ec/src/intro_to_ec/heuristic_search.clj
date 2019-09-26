@@ -40,11 +40,10 @@
         :else
         (let [kids (remove-previous-states
                     (make-children current-node) frontier (keys came-from))]
-          (println kids)
           (recur
-          ;(pq/priority-queue #(heuristic % [0 0]) :elements frontier)
+        ;  (pq/priority-queue #(heuristic % [0 0]) :elements
            (add-children
             kids
-            (rest frontier))
+            (rest frontier)))
            (reduce (fn [cf child] (assoc cf child current-node)) came-from kids)
-           (inc num-calls)))))))
+           (inc num-calls))))))
