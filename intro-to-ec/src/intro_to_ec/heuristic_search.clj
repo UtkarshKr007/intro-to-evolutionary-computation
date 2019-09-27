@@ -26,7 +26,7 @@
 
 (defn search
   [{:keys [get-next-node add-children]}
-   {:keys [goal? make-children]}
+   {:keys [goal? make-children heuristic]}
    start-node max-calls]
   (loop [frontier [start-node]
          came-from {start-node :start-node}
@@ -41,9 +41,9 @@
         (let [kids (remove-previous-states
                     (make-children current-node) frontier (keys came-from))]
           (recur
-        ;  (pq/priority-queue #(heuristic % [0 0]) :elements
+          (pq/priority-queue #(heuristic % [0 0]) :elements
            (add-children
             kids
             (rest frontier)))
            (reduce (fn [cf child] (assoc cf child current-node)) came-from kids)
-           (inc num-calls))))))
+           (inc num-calls)))))))

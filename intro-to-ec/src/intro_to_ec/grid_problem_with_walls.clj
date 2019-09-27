@@ -70,4 +70,5 @@
    or crossed."
   [min-range max-range wall-set]
   {:goal? origin-goal?
-   :make-children (partial grid-children min-range max-range wall-set)})
+   :make-children (partial grid-children min-range max-range wall-set)
+   :heuristic heuristic})
