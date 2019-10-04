@@ -46,11 +46,11 @@
             (let [kids (remove-previous-states
                         (make-children current-node) frontier (keys came-from))]
               (recur
-            ;  (pq/priority-queue #(heuristic % [0 0]) :elements //greedy search
-            ;  (pq/priority-queue #(heuristic % (if (nil? (get cost-so-far %)) (+ (get cost-so-far current-node) 1) (get cost-so-far %))) :elements
+             ;(pq/priority-queue #(heuristic % [0 0]) :elements ;//heuristic search
+           (pq/priority-queue #(heuristic % (if (nil? (get cost-so-far %)) (+ (get cost-so-far current-node) 1) (get cost-so-far %))) :elements
                (add-children
                 kids
                 (rest frontier)))
                (reduce (fn [cf child] (assoc cf child current-node)) came-from kids)
-               (reduce (fn [cost child] (assoc cost child (+1 (get cost-so-far current-node)))))
-               (inc num-calls)))))))
+               (inc num-calls)
+               (reduce (fn [cost child] (assoc cost child (+ 1 (get cost-so-far current-node )))) cost-so-far kids)))))))
