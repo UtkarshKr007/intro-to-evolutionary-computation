@@ -9,9 +9,8 @@
 ; Finds distance of a coordiante to goal(argument b) and multiplies by -1
 ; because our priority queue sorts highest to lowest
 (defn heuristic
-  [a b]
-  (* -1(+ (Math/abs (- (first a) (first b))) (Math/abs (- (second a) (second b))) )))
-
+[a & args]
+(+ (Math/abs (first a)) (Math/abs (second a))))
 ;; The possible moves in this lattice world. Each
 ;; move is represented by a vector indicating the
 ;; change in both x and y coordinates associated
