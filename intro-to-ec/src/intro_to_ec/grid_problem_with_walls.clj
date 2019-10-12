@@ -6,11 +6,24 @@
   [[x y]]
   (and (zero? x) (zero? y)))
 
-; Finds distance of a coordiante to goal(argument b) and multiplies by -1
-; because our priority queue sorts highest to lowest
+; Finds distance of a coordiante to goal by summing the values of the
+; x and y coordiante
 (defn heuristic
 [a & args]
 (+ (Math/abs (first a)) (Math/abs (second a))))
+
+;This time we emulate real world scenario by randomly adding 0 or 1 to
+; to each coordiante value since real world data has "noise"
+(defn heuristic2
+[b & args]
+(+ (+ (Math/abs (first b)) (rand-int 2)) (+ (Math/abs (second b)) (rand-int 2)))
+
+;Now we are purposefully chosing to account in the x-coordinate sometimes and
+; ignore it's contributions other times
+(defn heuristic3
+[c & args]
+(+ (* (Math/abs (first c)) (rand-int 2)) (Math/abs (second c))))
+
 ;; The possible moves in this lattice world. Each
 ;; move is represented by a vector indicating the
 ;; change in both x and y coordinates associated
